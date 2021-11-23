@@ -1,8 +1,9 @@
 class Task {
-    constructor(titre, priorite, description, dateLimite) {
-        this.titre = titre,
-        this.priorite = priorite,
+    constructor( nom, description, echeance, priorite, termine) {
+        this.nom = nom,
         this.description = description,
-        this.dateLimite = dateLimite
+        this.echeance = echeance,
+        this.priorite = priorite,
+        this.termine = termine
     }
 }
