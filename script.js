@@ -50,6 +50,7 @@ const dateInPast = function(firstDate, secondDate) {
 
 //fonciont qui lis le local storage et créé de nouveaux élément dans le tableau pour les afficher
 const ajoutTache = function(){
+
     for(let i = 0; i < localStorage.length; i++){
         var taskName = document.createTextNode(lireObjet(i).nom); //text qui récupère le non de la tache
         var taskDate = document.createTextNode(lireObjet(i).echeance); //text qui récupère la date de limite de la tache
@@ -92,9 +93,11 @@ const ajoutTache = function(){
             btnTitre.classList.add("btn-secondary");
         }
         //taches en retard
-         const today = new Date();
-         const todayDate = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-        if(dateInPast(lireObjet(i).echeance, todayDate)){
+        const today = new Date();
+        const todayDate = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+        const echeance = lireObjet(i).echeance.split("-");
+        const echeanceDate = new Date(echeance[2], echeance[1]-1, echeance[0]);
+        if(echeanceDate <= today){
             const span = document.createElement("span");
             const retard = document.createTextNode("EN RETARD");
             newCell1.appendChild(span);
